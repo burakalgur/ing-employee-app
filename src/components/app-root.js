@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { initRouter } from "../router.js";
 
 class AppRoot extends LitElement {
   static styles = css`
@@ -14,17 +15,18 @@ class AppRoot extends LitElement {
     main {
       padding: 16px;
     }
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #ff6a00;
-      color: #fff;
-      font-size: 12px;
-    }
   `;
+
+  firstUpdated() {
+    const outlet = this.renderRoot.getElementById("outlet");
+    initRouter(outlet);
+  }
+
   render() {
-    return html` <header>hello</header> `;
+    return html`
+      <header>hello</header>
+      <main id="outlet"></main>
+    `;
   }
 }
 
