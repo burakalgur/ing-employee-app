@@ -14,6 +14,7 @@
   "description": "",
   "type": "module",
   "dependencies": {
+    "@vaadin/grid": "^24.9.2",
     "@vaadin/router": "^2.0.0",
     "lit": "^3.3.1"
   },

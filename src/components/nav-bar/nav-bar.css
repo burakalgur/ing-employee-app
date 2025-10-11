@@ -1,7 +1,7 @@
 nav {
   background: white;
   border-bottom: 1px solid var(--stroke);
-  height: 25px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +18,7 @@ nav {
   align-items: center;
   gap: 8px;
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text);
 }
 .menu {
