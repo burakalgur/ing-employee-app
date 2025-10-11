@@ -2,15 +2,17 @@ import { LitElement, html, css } from "lit";
 
 class EmployeesPage extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      padding: 20px;
-    }
+    @import url("../styles.css");
   `;
   render() {
     return html`
-      <h2>Employees Page</h2>
-      <p>Bu sayfa router üzerinden yüklendi 🎯</p>
+      <div class="container">
+        <div class="card">
+          <h2>Employees Page</h2>
+          <p>Global stiller başarıyla yüklendi 🎨</p>
+          <button class="btn">Add Employee</button>
+        </div>
+      </div>
     `;
   }
 }
