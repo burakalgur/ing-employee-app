@@ -1,6 +1,6 @@
 :host {
   display: block;
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem 0 3rem;
 }
 
 .header {
@@ -11,7 +11,7 @@
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--brand);
   margin-top: -2px;

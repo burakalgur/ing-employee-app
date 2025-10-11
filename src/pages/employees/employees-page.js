@@ -3,6 +3,7 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import listIcon from "../../assets/icons/list.svg?raw";
 import gridIcon from "../../assets/icons/grid.svg?raw";
 import pageStyles from "./employees-page.css?inline";
+import "../../components/employee-grid/employee-grid.js";
 
 class EmployeesPage extends LitElement {
   static styles = css`
@@ -11,11 +12,24 @@ class EmployeesPage extends LitElement {
 
   static properties = {
     view: { type: String },
+    employees: { type: Array },
   };
 
   constructor() {
     super();
     this.view = "list";
+    this.employees = [
+      {
+        firstName: "Ahmet",
+        lastName: "Sourtimes",
+        dateOfEmployment: "23/09/2022",
+        dateOfBirth: "23/09/1992",
+        phone: "+(90) 532 123 45 67",
+        email: "ahmet@sourtimes.org",
+        department: "Analytics",
+        position: "Junior",
+      },
+    ];
   }
 
   changeView(view) {
@@ -31,21 +45,20 @@ class EmployeesPage extends LitElement {
             <button
               class="icon-btn ${this.view === "list" ? "active" : ""}"
               @click=${() => this.changeView("list")}
-              title="List view"
             >
               ${unsafeSVG(listIcon)}
             </button>
             <button
               class="icon-btn ${this.view === "grid" ? "active" : ""}"
               @click=${() => this.changeView("grid")}
-              title="Grid view"
             >
               ${unsafeSVG(gridIcon)}
             </button>
           </div>
         </div>
 
-        <!-- tablo/grid burada eklenecek -->
+        <!-- ayrı component -->
+        <employee-grid .employees=${this.employees}></employee-grid>
       </div>
     `;
   }
