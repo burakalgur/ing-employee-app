@@ -1,0 +1,49 @@
+nav {
+  background: white;
+  border-bottom: 1px solid var(--stroke);
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+#logo {
+  width: 35px;
+  height: 35px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.menu a {
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 300;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flag {
+  width: 20px;
+  height: 13px;
+}
+
+/* responsive */
+@media (max-width: 640px) {
+  .menu {
+    display: none;
+  }
+}
