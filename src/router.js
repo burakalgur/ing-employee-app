@@ -9,8 +9,14 @@ export function initRouter(outlet) {
       path: "/employees",
       component: "employees-page",
       action: async () => {
-        // yeni dizin yapısına göre import yolu düzeltildi
         await import("./pages/employees/employees-page.js");
+      },
+    },
+    {
+      path: "/employees/new",
+      component: "employee-add",
+      action: async () => {
+        await import("./pages/employees/employee-add.js");
       },
     },
   ]);
