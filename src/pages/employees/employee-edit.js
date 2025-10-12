@@ -62,7 +62,7 @@ class EmployeeEdit extends LitElement {
 
     return html`
       <div class="container">
-        <h2>Edit Employee</h2>
+        <h2 class="header">Edit Employee</h2>
         <employee-form
           .employee=${this.employee}
           @save=${this.handleSave}

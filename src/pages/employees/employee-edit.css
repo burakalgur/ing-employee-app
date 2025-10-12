@@ -1,11 +1,20 @@
-.container {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
+:host {
+  display: block;
+  padding: 1.5rem 3rem 0 3rem;
+  box-shadow: none !important;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  height: 2.5rem;
 }
 
 h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
   color: var(--brand);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-top: -2px;
 }
