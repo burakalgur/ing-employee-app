@@ -137,3 +137,15 @@ label span {
     width: 100%;
   }
 }
+/* form validation */
+
+input.invalid,
+select.invalid {
+  border-color: #ff3333 !important;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+input.invalid:focus,
+select.invalid:focus {
+  border-color: #ff0000 !important;
+}
