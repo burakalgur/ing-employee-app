@@ -5,6 +5,7 @@ import gridIcon from "../../assets/icons/grid.svg?raw";
 import pageStyles from "./employees-page.css?inline";
 import "../../components/employee-grid/employee-grid.js";
 import { getEmployees } from "../../utils/storage.js";
+import "../../components/employee-card-list/employee-card-list.js";
 
 class EmployeesPage extends LitElement {
   static styles = css`
@@ -56,12 +57,19 @@ class EmployeesPage extends LitElement {
           </div>
         </div>
 
-        <!-- ayrı component -->
-        <employee-grid
-          .employees=${this.employees}
-          @edit=${(e) => (window.location.href = `/employees/${e.detail}/edit`)}
-          @employee-deleted=${this.loadEmployees}
-        ></employee-grid>
+        ${this.view === "list"
+          ? html`
+              <employee-grid
+                .employees=${this.employees}
+                @employee-deleted=${this.loadEmployees}
+              ></employee-grid>
+            `
+          : html`
+              <employee-card-list
+                .employees=${this.employees}
+                @employee-deleted=${this.loadEmployees}
+              ></employee-card-list>
+            `}
       </div>
     `;
   }
