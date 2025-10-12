@@ -1,6 +1,7 @@
 :host {
   display: block;
   padding: 1.5rem 3rem 0 3rem;
+  box-shadow: none !important;
 }
 
 .header {
@@ -8,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  height: 2.5rem;
 }
 
 h2 {

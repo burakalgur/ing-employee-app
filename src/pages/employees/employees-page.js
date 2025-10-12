@@ -4,6 +4,7 @@ import listIcon from "../../assets/icons/list.svg?raw";
 import gridIcon from "../../assets/icons/grid.svg?raw";
 import pageStyles from "./employees-page.css?inline";
 import "../../components/employee-grid/employee-grid.js";
+import { getEmployees } from "../../utils/storage.js";
 
 class EmployeesPage extends LitElement {
   static styles = css`
@@ -18,18 +19,16 @@ class EmployeesPage extends LitElement {
   constructor() {
     super();
     this.view = "list";
-    this.employees = [
-      {
-        firstName: "Ahmet",
-        lastName: "Sourtimes",
-        dateOfEmployment: "23/09/2022",
-        dateOfBirth: "23/09/1992",
-        phone: "+(90) 532 123 45 67",
-        email: "ahmet@sourtimes.org",
-        department: "Analytics",
-        position: "Junior",
-      },
-    ];
+    this.employees = [];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.loadEmployees();
+  }
+
+  loadEmployees() {
+    this.employees = getEmployees();
   }
 
   changeView(view) {
