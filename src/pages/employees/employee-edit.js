@@ -41,7 +41,10 @@ class EmployeeEdit extends LitElement {
     modal.addEventListener(
       "confirm",
       () => {
-        updateEmployee(this.pendingUpdate);
+        const isUpdated = updateEmployee(this.pendingUpdate);
+        if (!isUpdated) {
+          return false;
+        }
         modal.show("Employee updated successfully!");
         setTimeout(() => {
           window.location.href = "/employees";
@@ -62,9 +65,11 @@ class EmployeeEdit extends LitElement {
 
     return html`
       <div class="container">
-        <h2>Edit Employee</h2>
+        <h2 class="header">Edit Employee</h2>
         <employee-form
           .employee=${this.employee}
+          editing="true"
+          editingName="${this.employee.firstName} ${this.employee.lastName}"
           @save=${this.handleSave}
           @cancel=${this.handleCancel}
         ></employee-form>
