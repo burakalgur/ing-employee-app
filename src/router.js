@@ -19,5 +19,12 @@ export function initRouter(outlet) {
         await import("./pages/employees/employee-add.js");
       },
     },
+    {
+      path: "/employees/edit/:id",
+      component: "employee-edit",
+      action: async () => {
+        await import("./pages/employees/employee-edit.js");
+      },
+    },
   ]);
 }

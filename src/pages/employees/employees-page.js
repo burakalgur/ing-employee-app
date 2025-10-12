@@ -57,7 +57,10 @@ class EmployeesPage extends LitElement {
         </div>
 
         <!-- ayrı component -->
-        <employee-grid .employees=${this.employees}></employee-grid>
+        <employee-grid
+          .employees=${this.employees}
+          @edit=${(e) => (window.location.href = `/employees/${e.detail}/edit`)}
+        ></employee-grid>
       </div>
     `;
   }
