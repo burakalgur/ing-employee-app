@@ -184,11 +184,14 @@ class EmployeeForm extends LitElement {
 
           <label>
             <span>Department</span>
-            <input
+            <select
               name="department"
               .value=${e.department}
-              @input=${this.updateField}
-            />
+              @change=${this.updateField}
+            >
+              <option>Analytics</option>
+              <option>Tech</option>
+            </select>
           </label>
 
           <label>
