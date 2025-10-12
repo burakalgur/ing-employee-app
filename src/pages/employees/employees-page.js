@@ -60,6 +60,7 @@ class EmployeesPage extends LitElement {
         <employee-grid
           .employees=${this.employees}
           @edit=${(e) => (window.location.href = `/employees/${e.detail}/edit`)}
+          @employee-deleted=${this.loadEmployees}
         ></employee-grid>
       </div>
     `;

@@ -7,6 +7,8 @@ import editIcon from "../../assets/icons/edit.svg?raw";
 import trashIcon from "../../assets/icons/trash.svg?raw";
 import leftArrow from "../../assets/icons/left.svg?raw";
 import rightArrow from "../../assets/icons/right.svg?raw";
+import { deleteEmployee, getEmployees } from "../../utils/storage.js";
+import "../../components/confirm-modal/confirm-modal.js";
 
 class EmployeeGrid extends LitElement {
   static styles = css`
@@ -41,6 +43,28 @@ class EmployeeGrid extends LitElement {
       this.currentPage = page;
     }
   }
+
+  showDeleteModal(employee) {
+    this.selectedEmployee = employee;
+    const modal = this.renderRoot.querySelector("#deleteModal");
+    modal.show(
+      `Selected Employee record of ${employee.firstName} ${employee.lastName} will be deleted?`
+    );
+  }
+
+  handleConfirmDelete() {
+    if (!this.selectedEmployee) return;
+
+    const updated = deleteEmployee(this.selectedEmployee.id);
+
+    this.employees = updated;
+    this.requestUpdate();
+
+    const modal = this.renderRoot.querySelector("#deleteModal");
+    modal.hide();
+    this.selectedEmployee = null;
+  }
+
   renderPagination() {
     const total = this.totalPages;
     const current = this.currentPage;
@@ -156,6 +180,9 @@ class EmployeeGrid extends LitElement {
               deleteBtn.className = "icon-btn delete";
               deleteBtn.innerHTML = trashIcon;
               deleteBtn.title = "Delete Employee";
+              deleteBtn.addEventListener("click", () =>
+                this.showDeleteModal(item)
+              );
 
               wrapper.appendChild(editBtn);
               wrapper.appendChild(deleteBtn);
@@ -166,6 +193,10 @@ class EmployeeGrid extends LitElement {
       </vaadin-grid>
 
       ${this.renderPagination()}
+      <confirm-modal
+        id="deleteModal"
+        @confirm=${this.handleConfirmDelete}
+      ></confirm-modal>
     `;
   }
 }

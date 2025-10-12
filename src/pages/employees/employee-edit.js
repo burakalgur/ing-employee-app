@@ -2,6 +2,7 @@ import { LitElement, html, css, unsafeCSS } from "lit";
 import styles from "./employee-edit.css?inline";
 import "../../components/employee-form/employee-form.js";
 import { getEmployees, updateEmployee } from "../../utils/storage.js";
+import "../../components/confirm-modal/confirm-modal.js";
 
 class EmployeeEdit extends LitElement {
   static styles = css`
@@ -30,10 +31,24 @@ class EmployeeEdit extends LitElement {
   }
 
   handleSave(e) {
-    const updatedData = { ...this.employee, ...e.detail };
-    updateEmployee(updatedData);
-    alert("Employee updated successfully!");
-    window.location.href = "/employees";
+    this.pendingUpdate = { ...this.employee, ...e.detail };
+    const modal = this.renderRoot.querySelector("#editModal");
+
+    modal.show(
+      `Selected Employee record of ${this.employee.firstName} ${this.employee.lastName} will be edited`
+    );
+
+    modal.addEventListener(
+      "confirm",
+      () => {
+        updateEmployee(this.pendingUpdate);
+        modal.show("Employee updated successfully!");
+        setTimeout(() => {
+          window.location.href = "/employees";
+        }, 1000);
+      },
+      { once: true }
+    );
   }
 
   handleCancel() {
@@ -54,6 +69,7 @@ class EmployeeEdit extends LitElement {
           @cancel=${this.handleCancel}
         ></employee-form>
       </div>
+      <confirm-modal id="editModal"></confirm-modal>
     `;
   }
 }
