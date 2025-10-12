@@ -31,11 +31,29 @@ h2 {
   cursor: pointer;
   padding: 6px;
   border-radius: 8px;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.icon-btn svg {
+  width: 22px;
+  height: 22px;
+  transition: fill 0.2s ease, opacity 0.2s ease;
+  fill: var(--brand);
+  opacity: 0.5;
+}
+
+/* Hover effect */
 .icon-btn:hover {
-  background: rgba(255, 106, 0, 0.1);
+  background: rgba(255, 106, 0, 0.08);
+  opacity: 0.9;
+}
+
+.icon-btn.active svg {
+  fill: var(--brand);
+  opacity: 1;
 }
 
 svg {
