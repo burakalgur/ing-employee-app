@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from "lit";
 import styles from "./employee-add.css?inline";
 import "../../components/employee-form/employee-form.js";
-import { saveEmployee } from "../../utils/storage.js";
+import { saveEmployee, checkDuplicateEmployee } from "../../utils/storage.js";
 import "../../components/confirm-modal/confirm-modal.js";
 
 class EmployeeAdd extends LitElement {
@@ -27,7 +27,10 @@ class EmployeeAdd extends LitElement {
     modal.addEventListener(
       "confirm",
       () => {
-        saveEmployee(this.pendingEmployee);
+        const isSaved = saveEmployee(this.pendingEmployee);
+        if (!isSaved) {
+          return false;
+        }
         modal.show("✅ Employee added successfully!");
         setTimeout(() => {
           window.location.href = "/employees";

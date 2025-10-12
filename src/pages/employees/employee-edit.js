@@ -41,7 +41,10 @@ class EmployeeEdit extends LitElement {
     modal.addEventListener(
       "confirm",
       () => {
-        updateEmployee(this.pendingUpdate);
+        const isUpdated = updateEmployee(this.pendingUpdate);
+        if (!isUpdated) {
+          return false;
+        }
         modal.show("Employee updated successfully!");
         setTimeout(() => {
           window.location.href = "/employees";
