@@ -2,6 +2,7 @@ import { LitElement, html, unsafeCSS } from "lit";
 import crossIcon from "../../assets/icons/cross.svg?raw"; // sağ üst kapatma ikonu
 import styles from "./confirm-modal.css?inline";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
+import { t } from "../../utils/localization.js";
 
 class ConfirmModal extends LitElement {
   static styles = [unsafeCSS(styles)];
@@ -16,10 +17,10 @@ class ConfirmModal extends LitElement {
     super();
     this.message = "";
     this.open = false;
-    this.title = "Are you sure?";
+    this.title = `${t("modal_title")}`;
   }
 
-  show(msg, title = "Are you sure?") {
+  show(msg, title = `${t("modal_title")}`) {
     this.message = msg;
     this.title = title;
     this.open = true;
@@ -53,8 +54,12 @@ class ConfirmModal extends LitElement {
               </div>
               <div class="message">${this.message}</div>
               <div class="actions">
-                <button class="confirm" @click=${this.confirm}>Proceed</button>
-                <button class="cancel" @click=${this.cancel}>Cancel</button>
+                <button class="confirm" @click=${this.confirm}>
+                  ${t("proceed")}
+                </button>
+                <button class="cancel" @click=${this.cancel}>
+                  ${t("cancel")}
+                </button>
               </div>
             </div>
           `

@@ -6,6 +6,7 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import { deleteEmployee } from "../../utils/storage.js";
 import "../employee-card/employee-card.js";
 import "../confirm-modal/confirm-modal.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeeCardList extends LitElement {
   static styles = css`
@@ -42,7 +43,11 @@ class EmployeeCardList extends LitElement {
   showDeleteModal(employee) {
     this.selectedEmployee = employee;
     const modal = this.renderRoot.querySelector("#deleteModal");
-    modal.show(`Delete record for ${employee.firstName} ${employee.lastName}?`);
+    const msg = t("modal_delete_info", {
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+    });
+    modal.show(msg);
   }
 
   handleConfirmDelete() {

@@ -1,3 +1,4 @@
+import { t } from "../utils/localization.js";
 const STORAGE_KEY = "employees";
 
 export function getEmployees() {
@@ -9,7 +10,7 @@ export function saveEmployee(employee) {
   const employees = getEmployees();
 
   if (checkDuplicateEmployee(employee)) {
-    alert(" A record with the same email or phone number already exists!");
+    alert(`${t("duplicate_error")}`);
     return false;
   }
 
@@ -24,22 +25,20 @@ export function updateEmployee(updatedEmployee) {
   const employees = getEmployees();
 
   if (checkDuplicateEmployee(updatedEmployee, updatedEmployee.id)) {
-    alert(
-      " Another record with the same email or phone number already exists!"
-    );
+    alert(`${t("duplicate_error")}`);
     return false;
   }
 
   const index = employees.findIndex((e) => e.id === updatedEmployee.id);
   if (index === -1) {
-    alert("Employee not found!");
+    alert(`${t("not_found_error")}`);
     return false;
   }
 
   employees[index] = updatedEmployee;
   localStorage.setItem("employees", JSON.stringify(employees));
 
-  alert("Employee updated successfully!");
+  alert(`${t("update_success")}`);
   return true;
 }
 

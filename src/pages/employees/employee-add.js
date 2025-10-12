@@ -3,6 +3,7 @@ import styles from "./employee-add.css?inline";
 import "../../components/employee-form/employee-form.js";
 import { saveEmployee, checkDuplicateEmployee } from "../../utils/storage.js";
 import "../../components/confirm-modal/confirm-modal.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeeAdd extends LitElement {
   static styles = css`
@@ -22,7 +23,7 @@ class EmployeeAdd extends LitElement {
     this.pendingEmployee = e.detail;
     const modal = this.renderRoot.querySelector("#infoModal");
 
-    modal.show("New employee will be created");
+    modal.show(`${t("modal_create_info")}`);
 
     modal.addEventListener(
       "confirm",
@@ -31,7 +32,6 @@ class EmployeeAdd extends LitElement {
         if (!isSaved) {
           return false;
         }
-        modal.show("✅ Employee added successfully!");
         setTimeout(() => {
           window.location.href = "/employees";
         }, 100);
@@ -43,7 +43,7 @@ class EmployeeAdd extends LitElement {
   render() {
     return html`
       <div class="container">
-        <h2 class="header">Add Employee</h2>
+        <h2 class="header">${t("add_employee")}</h2>
         <employee-form
           @save=${this.handleSave}
           @cancel=${this.handleCancel}

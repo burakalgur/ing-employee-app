@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from "lit";
 import styles from "./employee-form.css?inline";
+import { t } from "../../utils/localization.js";
 
 class EmployeeForm extends LitElement {
   static styles = css`
@@ -73,33 +74,28 @@ class EmployeeForm extends LitElement {
 
     requiredFields.forEach((field) => {
       if (!e[field] || e[field].trim() === "") {
-        errors.push(`${field} is required.`);
+        errors.push(`${field} ${t("input_require_error")}`);
         valid = false;
       }
     });
 
     if (e.firstName && (e.firstName.length < 2 || e.firstName.length > 30)) {
-      errors.push("First name must be between 2 and 30 characters.");
+      errors.push(`${t("firstname_length_error")}`);
       valid = false;
     }
 
     if (e.lastName && (e.lastName.length < 2 || e.lastName.length > 30)) {
-      errors.push("Last name must be between 2 and 30 characters.");
-      valid = false;
-    }
-
-    if (e.department && e.department.length > 40) {
-      errors.push("Department name cannot exceed 40 characters.");
+      errors.push(`${t("lastname_length_error")}`);
       valid = false;
     }
 
     if (e.phone && !phoneRegex.test(e.phone)) {
-      errors.push("Phone must be in format +(90) 532 123 45 67");
+      errors.push(`${t("phone_format_error")}`);
       valid = false;
     }
 
     if (!valid) {
-      alert("Validation errors:\n\n" + errors[0]);
+      alert(`${t("validation_error")}\n\n` + errors[0]);
     }
 
     return valid;
@@ -130,13 +126,13 @@ class EmployeeForm extends LitElement {
       <div class="form-container">
         ${this.editing
           ? html`<p class="editing-info">
-              You are editing ${this.editingName}
+              ${t("edit_title")} ${this.editingName}
             </p>`
           : ""}
         <form>
           <div class="grid">
             <label>
-              <span>First Name</span>
+              <span>${t("first_name")}</span>
               <input
                 name="firstName"
                 .value=${e.firstName}
@@ -145,7 +141,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Last Name</span>
+              <span>${t("last_name")}</span>
               <input
                 name="lastName"
                 .value=${e.lastName}
@@ -154,7 +150,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Date of Employment</span>
+              <span>${t("date_of_employment")}</span>
               <input
                 type="date"
                 name="dateOfEmployment"
@@ -164,7 +160,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Date of Birth</span>
+              <span>${t("date_of_birth")}</span>
               <input
                 type="date"
                 name="dateOfBirth"
@@ -175,7 +171,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Phone</span>
+              <span>${t("phone")}</span>
               <input
                 id="phone"
                 name="phone"
@@ -186,7 +182,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Email</span>
+              <span>${t("email")}</span>
               <input
                 name="email"
                 .value=${e.email}
@@ -195,7 +191,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Department</span>
+              <span>${t("department")}</span>
               <select
                 name="department"
                 .value=${e.department}
@@ -207,7 +203,7 @@ class EmployeeForm extends LitElement {
             </label>
 
             <label>
-              <span>Position</span>
+              <span>${t("position")}</span>
               <select
                 name="position"
                 .value=${e.position}
@@ -222,10 +218,10 @@ class EmployeeForm extends LitElement {
 
           <div class="actions">
             <button type="button" class="save" @click=${this.submitForm}>
-              Save
+              ${t("save")}
             </button>
             <button type="button" class="cancel" @click=${this.cancelForm}>
-              Cancel
+              ${t("cancel")}
             </button>
           </div>
         </form>
