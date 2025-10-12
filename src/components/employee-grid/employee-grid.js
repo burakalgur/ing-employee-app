@@ -137,13 +137,30 @@ class EmployeeGrid extends LitElement {
         ></vaadin-grid-column>
         <vaadin-grid-column
           header="Actions"
-          .renderer=${(root) => {
-            root.innerHTML = `
-              <div class="actions">
-                <button class="icon-btn edit">${editIcon}</button>
-                <button class="icon-btn delete">${trashIcon}</button>
-              </div>
-            `;
+          .renderer=${(root, column, rowData) => {
+            const item = rowData.item;
+
+            if (!root.firstElementChild) {
+              const wrapper = document.createElement("div");
+              wrapper.className = "actions";
+
+              const editBtn = document.createElement("button");
+              editBtn.className = "icon-btn edit";
+              editBtn.innerHTML = editIcon;
+              editBtn.title = "Edit Employee";
+              editBtn.addEventListener("click", () => {
+                window.location.href = `/employees/edit/${item.id}`;
+              });
+
+              const deleteBtn = document.createElement("button");
+              deleteBtn.className = "icon-btn delete";
+              deleteBtn.innerHTML = trashIcon;
+              deleteBtn.title = "Delete Employee";
+
+              wrapper.appendChild(editBtn);
+              wrapper.appendChild(deleteBtn);
+              root.appendChild(wrapper);
+            }
           }}
         ></vaadin-grid-column>
       </vaadin-grid>
