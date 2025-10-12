@@ -21,11 +21,13 @@ nav {
   font-size: 0.7rem;
   color: var(--text);
 }
+
 .menu {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .menu a {
   text-decoration: none;
   color: var(--brand);
@@ -34,6 +36,32 @@ nav {
   display: flex;
   align-items: center;
   gap: 6px;
+  opacity: 0.5; /* pasif default */
+  transition: opacity 0.2s ease;
+}
+
+.menu a:hover {
+  opacity: 0.8;
+}
+
+.menu a.active {
+  opacity: 1; /* aktif link */
+}
+
+/* SVG renkleri */
+.menu a span svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--brand);
+  transition: opacity 0.2s ease;
+}
+
+.menu a:not(.active) span svg {
+  opacity: 0.5;
+}
+
+.menu a.active span svg {
+  opacity: 1;
 }
 
 .flag {

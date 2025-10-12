@@ -22,6 +22,30 @@ class NavBar extends LitElement {
     this._open = !this._open;
   }
 
+  firstUpdated() {
+    this.updateActiveLink();
+    window.addEventListener("popstate", () => this.updateActiveLink());
+  }
+
+  updateActiveLink() {
+    const currentPath = window.location.pathname;
+
+    const employeesLink = this.renderRoot.querySelector('a[href="/employees"]');
+    const addLink = this.renderRoot.querySelector('a[href="/employees/new"]');
+
+    employeesLink.classList.remove("active");
+    addLink.classList.remove("active");
+
+    if (
+      currentPath === "/employees" ||
+      currentPath.startsWith("/employees/edit")
+    ) {
+      employeesLink.classList.add("active");
+    } else if (currentPath === "/employees/new") {
+      addLink.classList.add("active");
+    }
+  }
+
   render() {
     return html`
       <nav>
