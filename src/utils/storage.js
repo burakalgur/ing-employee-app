@@ -23,4 +23,5 @@ export function updateEmployee(updatedEmployee) {
 export function deleteEmployee(id) {
   const employees = getEmployees().filter((emp) => emp.id !== id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
+  return employees;
 }
