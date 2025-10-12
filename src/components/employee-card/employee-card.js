@@ -3,6 +3,7 @@ import styles from "./employee-card.css?inline";
 import editIcon from "../../assets/icons/edit.svg?raw";
 import trashIcon from "../../assets/icons/trash.svg?raw";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeeCard extends LitElement {
   static styles = css`
@@ -33,44 +34,44 @@ class EmployeeCard extends LitElement {
         <div class="content">
           <div class="row">
             <div class="field">
-              <label>First Name:</label>
+              <label>${t("first_name")}:</label>
               <span>${e.firstName || "-"}</span>
             </div>
             <div class="field">
-              <label>Last Name:</label>
+              <label>${t("last_name")}:</label>
               <span>${e.lastName || "-"}</span>
             </div>
           </div>
 
           <div class="row">
             <div class="field">
-              <label>Date of Employment</label>
+              <label>${t("date_of_employment")}</label>
               <span>${e.dateOfEmployment || "-"}</span>
             </div>
             <div class="field">
-              <label>Date of Birth</label>
+              <label>${t("date_of_birth")}</label>
               <span>${e.dateOfBirth || "-"}</span>
             </div>
           </div>
 
           <div class="row">
             <div class="field">
-              <label>Phone</label>
+              <label>${t("phone")}</label>
               <span>${e.phone || "-"}</span>
             </div>
             <div class="field">
-              <label>Email</label>
+              <label>${t("email")}</label>
               <span>${e.email || "-"}</span>
             </div>
           </div>
 
           <div class="row">
             <div class="field">
-              <label>Department</label>
+              <label>${t("department")}</label>
               <span>${e.department || "-"}</span>
             </div>
             <div class="field">
-              <label>Position</label>
+              <label>${t("position")}</label>
               <span>${e.position || "-"}</span>
             </div>
           </div>
@@ -78,10 +79,10 @@ class EmployeeCard extends LitElement {
 
         <div class="actions">
           <button class="edit" @click=${this.handleEdit}>
-            ${unsafeSVG(editIcon)} Edit
+            ${unsafeSVG(editIcon)} ${t("edit")}
           </button>
           <button class="delete" @click=${this.handleDelete}>
-            ${unsafeSVG(trashIcon)} Delete
+            ${unsafeSVG(trashIcon)} ${t("delete")}
           </button>
         </div>
       </div>

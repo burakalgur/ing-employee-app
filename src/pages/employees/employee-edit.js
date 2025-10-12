@@ -3,6 +3,7 @@ import styles from "./employee-edit.css?inline";
 import "../../components/employee-form/employee-form.js";
 import { getEmployees, updateEmployee } from "../../utils/storage.js";
 import "../../components/confirm-modal/confirm-modal.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeeEdit extends LitElement {
   static styles = css`
@@ -33,10 +34,11 @@ class EmployeeEdit extends LitElement {
   handleSave(e) {
     this.pendingUpdate = { ...this.employee, ...e.detail };
     const modal = this.renderRoot.querySelector("#editModal");
-
-    modal.show(
-      `Selected Employee record of ${this.employee.firstName} ${this.employee.lastName} will be edited`
-    );
+    const msg = t("modal_edit_info", {
+      firstName: this.employee.firstName,
+      lastName: this.employee.lastName,
+    });
+    modal.show(msg);
 
     modal.addEventListener(
       "confirm",
@@ -45,7 +47,7 @@ class EmployeeEdit extends LitElement {
         if (!isUpdated) {
           return false;
         }
-        modal.show("Employee updated successfully!");
+        modal.show(`${t("update_success")}`);
         setTimeout(() => {
           window.location.href = "/employees";
         }, 1000);
@@ -60,12 +62,12 @@ class EmployeeEdit extends LitElement {
 
   render() {
     if (!this.employee) {
-      return html`<p>Employee not found.</p>`;
+      return html`<p>${t("not_found_error")}</p>`;
     }
 
     return html`
       <div class="container">
-        <h2 class="header">Edit Employee</h2>
+        <h2 class="header">${t("edit_employee")}</h2>
         <employee-form
           .employee=${this.employee}
           editing="true"

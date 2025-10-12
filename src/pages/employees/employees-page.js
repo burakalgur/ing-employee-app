@@ -6,6 +6,7 @@ import pageStyles from "./employees-page.css?inline";
 import "../../components/employee-grid/employee-grid.js";
 import { getEmployees } from "../../utils/storage.js";
 import "../../components/employee-card-list/employee-card-list.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeesPage extends LitElement {
   static styles = css`
@@ -40,7 +41,7 @@ class EmployeesPage extends LitElement {
     return html`
       <div class="container">
         <div class="header">
-          <h2>Employee List</h2>
+          <h2>${t("employee_list")}</h2>
           <div class="view-toggle">
             <button
               class="icon-btn ${this.view === "list" ? "active" : ""}"

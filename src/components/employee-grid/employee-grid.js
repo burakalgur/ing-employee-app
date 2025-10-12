@@ -9,6 +9,7 @@ import leftArrow from "../../assets/icons/left.svg?raw";
 import rightArrow from "../../assets/icons/right.svg?raw";
 import { deleteEmployee, getEmployees } from "../../utils/storage.js";
 import "../../components/confirm-modal/confirm-modal.js";
+import { t } from "../../utils/localization.js";
 
 class EmployeeGrid extends LitElement {
   static styles = css`
@@ -47,9 +48,11 @@ class EmployeeGrid extends LitElement {
   showDeleteModal(employee) {
     this.selectedEmployee = employee;
     const modal = this.renderRoot.querySelector("#deleteModal");
-    modal.show(
-      `Selected Employee record of ${employee.firstName} ${employee.lastName} will be deleted?`
-    );
+    const msg = t("modal_delete_info", {
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+    });
+    modal.show(msg);
   }
 
   handleConfirmDelete() {
@@ -135,32 +138,38 @@ class EmployeeGrid extends LitElement {
 
         <vaadin-grid-column
           path="firstName"
-          header="First Name"
+          header=${t("first_name")}
         ></vaadin-grid-column>
         <vaadin-grid-column
           path="lastName"
-          header="Last Name"
+          header="${t("last_name")}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           path="dateOfEmployment"
-          header="Date of Employment"
+          header="${t("date_of_employment")}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           path="dateOfBirth"
-          header="Date of Birth"
+          header="${t("date_of_birth")}"
         ></vaadin-grid-column>
-        <vaadin-grid-column path="phone" header="Phone"></vaadin-grid-column>
-        <vaadin-grid-column path="email" header="Email"></vaadin-grid-column>
+        <vaadin-grid-column
+          path="phone"
+          header="${t("phone")}"
+        ></vaadin-grid-column>
+        <vaadin-grid-column
+          path="email"
+          header="${t("email")}"
+        ></vaadin-grid-column>
         <vaadin-grid-column
           path="department"
-          header="Department"
+          header="${t("department")}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           path="position"
-          header="Position"
+          header="${t("position")}"
         ></vaadin-grid-column>
         <vaadin-grid-column
-          header="Actions"
+          header="${t("actions")}"
           .renderer=${(root, column, rowData) => {
             const item = rowData.item;
 
