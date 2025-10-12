@@ -7,6 +7,19 @@ form {
   box-shadow: 0 !important;
   height: 37rem;
 }
+.form-container {
+  position: relative;
+}
+
+.editing-info {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.7rem;
+  font-size: 0.7rem;
+  color: #555;
+  font-weight: 500;
+  pointer-events: none;
+}
 
 h2 {
   color: var(--brand);

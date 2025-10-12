@@ -68,6 +68,8 @@ class EmployeeEdit extends LitElement {
         <h2 class="header">Edit Employee</h2>
         <employee-form
           .employee=${this.employee}
+          editing="true"
+          editingName="${this.employee.firstName} ${this.employee.lastName}"
           @save=${this.handleSave}
           @cancel=${this.handleCancel}
         ></employee-form>

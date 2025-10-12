@@ -8,6 +8,8 @@ class EmployeeForm extends LitElement {
 
   static properties = {
     employee: { type: Object },
+    editing: { type: Boolean },
+    editingName: { type: String },
   };
 
   constructor() {
@@ -125,98 +127,109 @@ class EmployeeForm extends LitElement {
   render() {
     const e = this.employee;
     return html`
-      <form>
-        <div class="grid">
-          <label>
-            <span>First Name</span>
-            <input
-              name="firstName"
-              .value=${e.firstName}
-              @input=${this.updateField}
-            />
-          </label>
+      <div class="form-container">
+        ${this.editing
+          ? html`<p class="editing-info">
+              You are editing ${this.editingName}
+            </p>`
+          : ""}
+        <form>
+          <div class="grid">
+            <label>
+              <span>First Name</span>
+              <input
+                name="firstName"
+                .value=${e.firstName}
+                @input=${this.updateField}
+              />
+            </label>
 
-          <label>
-            <span>Last Name</span>
-            <input
-              name="lastName"
-              .value=${e.lastName}
-              @input=${this.updateField}
-            />
-          </label>
+            <label>
+              <span>Last Name</span>
+              <input
+                name="lastName"
+                .value=${e.lastName}
+                @input=${this.updateField}
+              />
+            </label>
 
-          <label>
-            <span>Date of Employment</span>
-            <input
-              type="date"
-              name="dateOfEmployment"
-              .value=${e.dateOfEmployment}
-              @input=${this.updateField}
-            />
-          </label>
+            <label>
+              <span>Date of Employment</span>
+              <input
+                type="date"
+                name="dateOfEmployment"
+                .value=${e.dateOfEmployment}
+                @input=${this.updateField}
+              />
+            </label>
 
-          <label>
-            <span>Date of Birth</span>
-            <input
-              type="date"
-              name="dateOfBirth"
-              .value=${e.dateOfBirth}
-              @input=${this.updateField}
-              max=${new Date().toISOString().split("T")[0]}
-            />
-          </label>
+            <label>
+              <span>Date of Birth</span>
+              <input
+                type="date"
+                name="dateOfBirth"
+                .value=${e.dateOfBirth}
+                @input=${this.updateField}
+                max=${new Date().toISOString().split("T")[0]}
+              />
+            </label>
 
-          <label>
-            <span>Phone</span>
-            <input
-              id="phone"
-              name="phone"
-              maxlength="19"
-              @input=${this.formatPhone}
-              .value=${this.employee.phone || "+(90) "}
-            />
-          </label>
+            <label>
+              <span>Phone</span>
+              <input
+                id="phone"
+                name="phone"
+                maxlength="19"
+                @input=${this.formatPhone}
+                .value=${this.employee.phone || "+(90) "}
+              />
+            </label>
 
-          <label>
-            <span>Email</span>
-            <input name="email" .value=${e.email} @input=${this.updateField} />
-          </label>
+            <label>
+              <span>Email</span>
+              <input
+                name="email"
+                .value=${e.email}
+                @input=${this.updateField}
+              />
+            </label>
 
-          <label>
-            <span>Department</span>
-            <select
-              name="department"
-              .value=${e.department}
-              @change=${this.updateField}
-            >
-              <option>Analytics</option>
-              <option>Tech</option>
-            </select>
-          </label>
+            <label>
+              <span>Department</span>
+              <select
+                name="department"
+                .value=${e.department}
+                @change=${this.updateField}
+              >
+                <option>Analytics</option>
+                <option>Tech</option>
+              </select>
+            </label>
 
-          <label>
-            <span>Position</span>
-            <select
-              name="position"
-              .value=${e.position}
-              @change=${this.updateField}
-            >
-              <option>Junior</option>
-              <option>Mid</option>
-              <option>Senior</option>
-            </select>
-          </label>
-        </div>
+            <label>
+              <span>Position</span>
+              <select
+                name="position"
+                .value=${e.position}
+                @change=${this.updateField}
+              >
+                <option>Junior</option>
+                <option>Mid</option>
+                <option>Senior</option>
+              </select>
+            </label>
+          </div>
 
-        <div class="actions">
-          <button type="button" class="save" @click=${this.submitForm}>
-            Save
-          </button>
-          <button type="button" class="cancel" @click=${this.cancelForm}>
-            Cancel
-          </button>
-        </div>
-      </form>
+          <div class="actions">
+            <button type="button" class="save" @click=${this.submitForm}>
+              Save
+            </button>
+            <button type="button" class="cancel" @click=${this.cancelForm}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     `;
   }
 }
