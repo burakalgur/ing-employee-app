@@ -12,7 +12,7 @@ class NavBar extends LitElement {
 
   static properties = {
     _open: { type: Boolean },
-    _lang: { type: String }, // <-- reaktif yap
+    _lang: { type: String },
   };
 
   constructor() {
@@ -66,8 +66,8 @@ class NavBar extends LitElement {
 
   render() {
     const isTurkish = this._lang === "tr";
-    const flagSrc = isTurkish ? "/flags/tr.png" : "/flags/en.png";
-    const flagAlt = isTurkish ? "TR" : "EN";
+    const flagSrc = isTurkish ? "/flags/en.png" : "/flags/tr.png";
+    const flagAlt = isTurkish ? "EN" : "TR";
 
     return html`
       <nav>
@@ -99,7 +99,6 @@ class NavBar extends LitElement {
   }
 }
 
-// Hot-reload guard
 if (!customElements.get("nav-bar")) {
   customElements.define("nav-bar", NavBar);
 }
