@@ -2,23 +2,26 @@
   "name": "ing-employee-app",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "type": "module",
   "dependencies": {
     "@vaadin/grid": "^24.9.2",
     "@vaadin/router": "^2.0.0",
     "lit": "^3.3.1"
   },
   "devDependencies": {
-    "vite": "^7.1.9"
+    "@open-wc/testing": "^4.0.0",
+    "@testing-library/dom": "^10.4.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "happy-dom": "^20.0.7",
+    "vite": "^7.1.9",
+    "vitest": "^3.2.4"
   }
 }
