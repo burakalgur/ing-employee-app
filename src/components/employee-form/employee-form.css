@@ -99,12 +99,33 @@ select:focus {
 
 input[type="date"] {
   padding-right: 2rem;
+  position: relative;
+  cursor: pointer;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(53%) sepia(81%) saturate(4360%) hue-rotate(1deg)
-    brightness(101%) contrast(102%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   cursor: pointer;
-  margin: 0;
+}
+
+input[type="date"]::after {
+  content: "";
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ff6a00' viewBox='0 0 24 24'><path d='M7 2v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm12 18H5V9h14v11z'/></svg>")
+    no-repeat center center;
+  background-size: 16px;
+  pointer-events: none;
 }
 
 .actions {
