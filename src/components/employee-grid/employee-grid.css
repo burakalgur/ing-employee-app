@@ -23,6 +23,10 @@ vaadin-grid-cell-content {
   font-size: 0.7rem;
 }
 
+:host ::part(header-cell),
+:host ::part(cell) {
+  text-align: center;
+}
 /* checkbox */
 
 :host vaadin-checkbox::part(checkbox),
@@ -62,6 +66,7 @@ vaadin-grid-cell-content {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  justify-content: center;
 }
 
 .icon-btn {
