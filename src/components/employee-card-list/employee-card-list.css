@@ -97,3 +97,14 @@
 .nav-btn[disabled] svg {
   stroke-width: 1.2px;
 }
+
+@media (max-width: 900px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1rem;
+  }
+  .pagination {
+    min-width: auto;
+  }
+}

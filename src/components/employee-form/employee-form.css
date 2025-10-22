@@ -1,12 +1,24 @@
+:host {
+  --field-height: 2rem;
+  --radius: 4px;
+  --border: 0.5px solid #333;
+  --gap-row: clamp(1.25rem, 3vw, 2.75rem);
+  --gap-col: clamp(2rem, 6vw, 6rem);
+  --space: clamp(0.75rem, 2vw, 0rem);
+}
+
 form {
   box-sizing: border-box;
   background: #fff;
-  padding: 4rem 1.5rem;
+  padding: clamp(4rem, 3vw, 2rem) var(--space);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 !important;
-  height: 37rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  max-width: 100%;
 }
+
 .form-container {
   position: relative;
 }
@@ -15,7 +27,7 @@ form {
   position: absolute;
   top: 0.5rem;
   left: 0.7rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #555;
   font-weight: 500;
   pointer-events: none;
@@ -28,92 +40,11 @@ h2 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem 6rem;
-  justify-items: center;
-  margin-bottom: 2rem;
-}
-
-input,
-select {
-  min-width: 18rem;
-  height: 2.3rem;
-  padding: 0 0.8rem;
-  border: 0.5px solid #333;
-  border-radius: 4px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s ease;
-  box-sizing: border-box;
-  font-size: 0.8rem;
-  appearance: none;
-}
-
-input[type="date"],
-select {
-  line-height: normal;
-  height: 2.3rem;
-  padding-right: 2rem;
-}
-
-select {
-  padding-right: 6.925rem;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: url("data:image/svg+xml;utf8,<svg fill='%23333' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
-    no-repeat right 0.4rem center;
-  background-color: white;
-  background-size: 26px;
-  cursor: pointer;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--brand);
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(53%) sepia(81%) saturate(4360%) hue-rotate(1deg)
-    brightness(101%) contrast(102%);
-  cursor: pointer;
-  margin-right: -20px;
-}
-
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  margin-top: 1rem;
-}
-
-button {
-  min-width: 14rem;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-button.save {
-  background-color: var(--brand);
-  color: white;
-}
-
-button.save:hover {
-  background-color: #ff8533;
-}
-
-button.cancel {
-  border: 1px solid #9188b8;
-  color: #4a3b8b;
-  background: none;
-}
-
-button.cancel:hover {
-  background-color: rgba(145, 136, 184, 0.08);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: var(--gap-row) var(--gap-col);
+  justify-items: stretch;
+  margin-bottom: 3rem;
+  grid-template-columns: repeat(3, minmax(18rem, 1fr));
 }
 
 label {
@@ -129,36 +60,126 @@ label span {
   font-size: 0.8rem;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+input,
+select {
+  width: 100%;
+  max-width: 14rem;
+  height: var(--field-height);
+  padding: 0 0.8rem;
+  border: var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  appearance: none;
 }
 
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .actions {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  button {
-    width: 100%;
-  }
+input[type="date"],
+select {
+  line-height: normal;
+  height: var(--field-height);
 }
-/* form validation */
+
+select {
+  padding-right: 2.25rem;
+  background: url("data:image/svg+xml;utf8,<svg fill='%23333' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
+    no-repeat right 0.75rem center;
+  background-color: white;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.15);
+}
+
+input[type="date"] {
+  padding-right: 2rem;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(53%) sepia(81%) saturate(4360%) hue-rotate(1deg)
+    brightness(101%) contrast(102%);
+  cursor: pointer;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 4rem);
+  margin-top: 1rem;
+  flex-wrap: nowrap;
+}
+
+button {
+  width: min(14rem, 100%);
+  padding: 0.6rem 6.2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.05s ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.save {
+  background-color: var(--brand);
+  color: #fff;
+}
+button.save:hover {
+  background-color: #ff8533;
+}
+
+button.cancel {
+  border: 1px solid #9188b8;
+  color: #4a3b8b;
+  background: none;
+}
+button.cancel:hover {
+  background-color: rgba(145, 136, 184, 0.08);
+}
 
 input.invalid,
 select.invalid {
   border-color: #ff3333 !important;
   background-color: rgba(255, 0, 0, 0.05);
 }
-
 input.invalid:focus,
 select.invalid:focus {
   border-color: #ff0000 !important;
+  box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.15);
+}
+
+@media (max-width: 1090px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(18rem, 1fr));
+    gap: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 723px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  button {
+    width: 100%;
+    padding: 0.6rem 4rem;
+  }
+  input,
+  select {
+    min-width: 100%;
+  }
 }
