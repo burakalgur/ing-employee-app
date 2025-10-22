@@ -67,10 +67,3 @@ nav {
   width: 20px;
   height: 13px;
 }
-
-/* responsive */
-@media (max-width: 640px) {
-  .menu {
-    display: none;
-  }
-}

@@ -173,3 +173,9 @@ vaadin-grid-cell-content {
 .nav-btn[disabled] svg {
   stroke-width: 1.2px;
 }
+
+@media (max-width: 900px) {
+  .pagination {
+    min-width: auto;
+  }
+}
